@@ -94,7 +94,7 @@
       </a>
     </div>
     <div id="home" class="jumbotron text-center">
-      <img class="img img-responsive hidden-xs" src="/res/site/img/logo-ja-niteroi-branco.png" alt="Jaime Aroxa Niteroi" style="width: 450px;margin:0 auto;">
+      <img class="img img-responsive hidden-xs" src="/res/site/img/logo-escola-branco.png" alt="Jaime Aroxa Niteroi" style="width: 450px;margin:0 auto;">
       <p>Escolha o ritmo e mude sua vida!</p>
       <button class="btn btn-outline btn-danger btn-md" style="color: white;"><a href="#contato" style="text-decoration: none; color: white;">Entre em contato!</a></button>
     </div>

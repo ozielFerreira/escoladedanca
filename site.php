@@ -10,8 +10,6 @@ use \escoladedanca\Model\Horario;
 use \escoladedanca\Model\Video;
 // use \ecommerce\Model\Address;
 // use \ecommerce\Model\User;
-// use \ecommerce\Model\Order;
-// use \ecommerce\Model\OrderStatus;
 
 $app->get('/', function() {
 	$banners = Banner::listAll();

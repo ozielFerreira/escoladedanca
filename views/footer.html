@@ -61,7 +61,7 @@
   <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
-  <img class="img img-responsive" src="/res/site/img/logo-ja-niteroi-branco.png" alt="Jaime Aroxa Niteroi" style="width:120px;margin:0 auto;">
+  <img class="img img-responsive" src="/res/site/img/logo-escola-branco.png" alt="Jaime Aroxa Niteroi" style="width:120px;margin:0 auto;">
   <p><a href="#" target="_blank" title="Jaime Arôxa Niterói | Carlinhos de Niterói">&copy;2017 Todos direitos reservados </a><br>| <br>Desenvolvido por Oziel Ferreira <br>Escola de Dança Jaime Arôxa Niterói</p>
 </footer>
 

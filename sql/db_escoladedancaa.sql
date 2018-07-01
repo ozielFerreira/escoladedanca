@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Jun-2018 às 08:21
+-- Generation Time: 01-Jul-2018 às 20:27
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -26,6 +26,34 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_banners_delete` (`pidbanner` INT)  BEGIN 
+    DELETE FROM tb_banners WHERE idbanner = pidbanner;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_banners_save` (`pidbanner` INT(11), `ptitulobanner` TEXT, `pdesurlbanner` VARCHAR(128))  BEGIN
+  
+  IF pidbanner > 0 THEN
+    
+    UPDATE tb_banners
+        SET 
+            titulobanner = ptitulobanner,
+            desurlbanner = pdesurlbanner
+            
+        WHERE idbanner = pidbanner;
+        
+    ELSE
+    
+    INSERT INTO tb_banners (titulobanner, desurlbanner) 
+        VALUES(ptitulobanner, pdesurlbanner);
+        
+        SET pidbanner = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * FROM tb_banners WHERE idbanner = pidbanner;
+    
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_equipes_delete` (`pidequipe` INT)  BEGIN 
 DELETE FROM tb_equipes WHERE idequipe = pidequipe;
 END$$
@@ -246,41 +274,6 @@ END$$
 
 DELIMITER ;
 
-
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_banners_delete` (`pidbanner` INT)  BEGIN 
-    DELETE FROM tb_banners WHERE idbanner = pidbanner;
-END$$
-
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_banners_save` (
-  pidbanner INT(11), 
-  ptitulobanner TEXT, 
-  pdesurlbanner VARCHAR(128)
-  )  BEGIN
-  
-  IF pidbanner > 0 THEN
-    
-    UPDATE tb_banners
-        SET 
-            titulobanner = ptitulobanner,
-            desurlbanner = pdesurlbanner
-            
-        WHERE idbanner = pidbanner;
-        
-    ELSE
-    
-    INSERT INTO tb_banners (titulobanner, desurlbanner) 
-        VALUES(ptitulobanner, pdesurlbanner);
-        
-        SET pidbanner = LAST_INSERT_ID();
-        
-    END IF;
-    
-    SELECT * FROM tb_banners WHERE idbanner = pidbanner;
-    
-END$$
-
 -- --------------------------------------------------------
 
 --
@@ -335,6 +328,14 @@ CREATE TABLE `tb_banners` (
   `desurlbanner` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `tb_banners`
+--
+
+INSERT INTO `tb_banners` (`idbanner`, `titulobanner`, `desurlbanner`) VALUES
+(2, 'Balle', 'jaime-aroxa-niteroi-balle'),
+(3, 'TANGO', 'jaime-aroxa-niteroi-tango');
+
 -- --------------------------------------------------------
 
 --
@@ -342,7 +343,7 @@ CREATE TABLE `tb_banners` (
 --
 
 CREATE TABLE `tb_contatos` (
-  `idcontato` int(20) NOT NULL,
+  `idcontato` int(11) NOT NULL,
   `nome` varchar(220) NOT NULL,
   `email` varchar(220) NOT NULL,
   `telefone` varchar(220) NOT NULL,
@@ -424,7 +425,7 @@ INSERT INTO `tb_eventos` (`idevento`, `tituloevento`, `desurl`, `descevento`, `d
 --
 
 CREATE TABLE `tb_horarios` (
-  `idhorario` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `idhorario` int(11) NOT NULL,
   `dessemana` varchar(128) NOT NULL,
   `desprofessor` varchar(128) NOT NULL,
   `desritmo` varchar(128) NOT NULL,
@@ -464,7 +465,13 @@ CREATE TABLE `tb_ritmos` (
 --
 
 INSERT INTO `tb_ritmos` (`idritmo`, `tituloritmo`, `descritmo`, `desurlritmo`, `dtregister`) VALUES
-(1, 'Bolero', 'O bolero é um ritmo cubano que mescla raízes espanholas com influências locais de vários países hispano-americanos.', 'jaime-aroxa-niteroi-ritmo-bolero', '2018-06-29 08:00:50');
+(2, 'Samba', 'O samba é um gênero musical oriundo do Rio de Janeiro', 'jaime-aroxa-niteroi-ritmo-samba', '2018-06-30 18:20:09'),
+(3, 'Soltinho', 'Soltinho é um gênero de dança de salão brasileiro. ', 'jaime-aroxa-niteroi-ritmo-soltinho', '2018-06-30 18:22:11'),
+(4, 'Salsa', 'A banda La Sonora Matancera que criou o nome Salsa.', 'jaime-aroxa-niteroi-ritmo-salsa', '2018-06-30 18:25:23'),
+(5, 'Forró', 'Os bailes abertos ao público, se chamavam for all. ', 'jaime-aroxa-niteroi-ritmo-forro', '2018-06-30 18:28:36'),
+(6, 'Zouk', 'Zouk é uma dança que é comum no Caribe.', 'jaime-aroxa-niteroi-ritmo-zouk', '2018-06-30 18:30:07'),
+(7, 'Tango', 'O tango nasceu nos subúrbios de Buenos Aires.', 'jaime-aroxa-niteroi-ritmo-tango', '2018-06-30 18:31:32'),
+(8, 'Bolero', 'O bolero é um ritmo cubano com raízes espanholas.', 'jaime-aroxa-niteroi-ritmo-bolero', '2018-07-01 06:13:57');
 
 -- --------------------------------------------------------
 
@@ -525,7 +532,7 @@ CREATE TABLE `tb_userspasswordsrecoveries` (
 --
 
 INSERT INTO `tb_userspasswordsrecoveries` (`idrecovery`, `iduser`, `desip`, `dtrecovery`, `dtregister`) VALUES
-(0, 4, '127.0.0.1', '2018-06-21 02:26:06', '2018-06-21 05:25:08');
+(1, 4, '127.0.0.1', '2018-06-21 02:26:06', '2018-06-21 05:25:08');
 
 -- --------------------------------------------------------
 
@@ -583,10 +590,22 @@ ALTER TABLE `tb_banners`
   ADD PRIMARY KEY (`idbanner`);
 
 --
+-- Indexes for table `tb_contatos`
+--
+ALTER TABLE `tb_contatos`
+  ADD PRIMARY KEY (`idcontato`);
+
+--
 -- Indexes for table `tb_equipe`
 --
 ALTER TABLE `tb_equipe`
   ADD PRIMARY KEY (`idequipe`);
+
+--
+-- Indexes for table `tb_escola`
+--
+ALTER TABLE `tb_escola`
+  ADD PRIMARY KEY (`idescola`);
 
 --
 -- Indexes for table `tb_eventos`
@@ -614,6 +633,20 @@ ALTER TABLE `tb_users`
   ADD KEY `FK_users_alunos_idx` (`idaluno`);
 
 --
+-- Indexes for table `tb_userslogs`
+--
+ALTER TABLE `tb_userslogs`
+  ADD PRIMARY KEY (`idlog`),
+  ADD KEY `fk_userslogs_users_idx` (`iduser`);
+
+--
+-- Indexes for table `tb_userspasswordsrecoveries`
+--
+ALTER TABLE `tb_userspasswordsrecoveries`
+  ADD PRIMARY KEY (`idrecovery`),
+  ADD KEY `fk_userspasswordsrecoveries_users_idx` (`iduser`);
+
+--
 -- Indexes for table `tb_videos`
 --
 ALTER TABLE `tb_videos`
@@ -636,10 +669,28 @@ ALTER TABLE `tb_alunos`
   MODIFY `idaluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `tb_banners`
+--
+ALTER TABLE `tb_banners`
+  MODIFY `idbanner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_contatos`
+--
+ALTER TABLE `tb_contatos`
+  MODIFY `idcontato` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_equipe`
 --
 ALTER TABLE `tb_equipe`
   MODIFY `idequipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_escola`
+--
+ALTER TABLE `tb_escola`
+  MODIFY `idescola` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_eventos`
@@ -657,13 +708,25 @@ ALTER TABLE `tb_horarios`
 -- AUTO_INCREMENT for table `tb_ritmos`
 --
 ALTER TABLE `tb_ritmos`
-  MODIFY `idritmo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idritmo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
   MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tb_userslogs`
+--
+ALTER TABLE `tb_userslogs`
+  MODIFY `idlog` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_userspasswordsrecoveries`
+--
+ALTER TABLE `tb_userspasswordsrecoveries`
+  MODIFY `idrecovery` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_videos`
@@ -686,6 +749,12 @@ ALTER TABLE `tb_addresses`
 --
 ALTER TABLE `tb_users`
   ADD CONSTRAINT `fk_users_alunos` FOREIGN KEY (`idaluno`) REFERENCES `tb_alunos` (`idaluno`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `tb_userslogs`
+--
+ALTER TABLE `tb_userslogs`
+  ADD CONSTRAINT `fk_userslogs_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

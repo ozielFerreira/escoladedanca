@@ -458,7 +458,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#myPage"><img class="img img-responsive logo" src="/res/site/img/logo-ja-niteroi-branco.png" alt="" style="width: 215px; margin-top:-12px;"></a>
+                <a class="navbar-brand" href="#myPage"><img class="img img-responsive logo" src="/res/site/img/logo-escola-branco.png" alt="" style="width: 215px; margin-top:-12px;"></a>
               </div>
               <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">

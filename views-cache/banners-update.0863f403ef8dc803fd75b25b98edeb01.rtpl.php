@@ -35,7 +35,7 @@
               <input type="file" class="form-control" id="file" name="file" value="<?php echo htmlspecialchars( $banner["desphotobanners"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
               <div class="box box-widget">
                 <div class="box-body">
-                  <img class="img-responsive" id="image-preview" src="<?php echo htmlspecialchars( $banner["desphotobanners"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Photo" style="height: 600px;width: 100%;">
+                  <img class="img-responsive" id="image-preview" src="<?php echo htmlspecialchars( $banner["desphotobanners"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Photo" style="height: 100%;width: 100%;">
                 </div>
               </div>
             </div>
