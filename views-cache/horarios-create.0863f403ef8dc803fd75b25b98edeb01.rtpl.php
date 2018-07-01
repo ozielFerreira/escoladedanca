@@ -1,0 +1,78 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Lista de Horários
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="/admin/horarios">Horários</a></li>
+      <li class="active"><a href="/admin/horarios/create">Cadastrar</a></li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+     <div class="col-md-12">
+      <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">Novo Horário</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="/admin/horarios/create" method="post">
+          <div class="box-body">
+
+            <div class="form-group">
+              <label for="dessemana">Dia da semana</label>
+              <input type="text" class="form-control" id="dessemana" name="dessemana" placeholder="Digite o dia da semana">
+            </div>
+            
+            <div class="form-group">
+              <label for="desprofessor">Professor(a)</label>
+              <input type="text" class="form-control" id="desprofessor" name="desprofessor" placeholder="Digite o nome do professor">
+            </div>
+
+            <div class="form-group">
+              <label for="desritmo">Ritmo</label>
+              <input type="text" class="form-control" id="desritmo" name="desritmo" placeholder="Digite o ritmo">
+            </div>
+
+            <div class="form-group">
+              <label for="desnivel">Nível</label>
+              <input type="text" class="form-control" id="desnivel" name="desnivel" placeholder="Digite o nível da turma">
+            </div>
+
+            <div class="form-group">
+              <label for="deshorario">Horário</label>
+              <input type="text" class="form-control" id="deshorario" name="deshorario" placeholder="Digite o horário da aula">
+            </div>
+
+            <div class="form-group">
+              <label for="deschorario">Descrição</label>
+              <input type="text" class="form-control" id="deschorario" name="deschorario" placeholder="Descrição">
+            </div>
+
+            <div class="form-group">
+              <label for="destitulohorario">Titulo</label>
+              <input type="text" class="form-control" id="destitulohorario" name="destitulohorario" placeholder="Digite o titulo">
+            </div>
+
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button type="submit" class="btn btn-success">Cadastrar</button>
+              <a href="/admin/horarios" class="btn btn-primary">
+                <i class="fa fa-undo"></i> Voltar</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+<!-- /.content-wrapper -->

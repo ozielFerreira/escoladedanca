@@ -1,0 +1,93 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Ritmos
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <a href="/admin">
+          <i class="fa fa-dashboard"></i> Home
+        </a>
+      </li>
+      <li class="active">
+        <a href="/admin/ritmos">Ritmos</a>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+
+          <div class="box-header">
+            <a href="/admin/ritmos/create" class="btn btn-success">
+              <i class="fa fa-plus"></i> Cadastrar Ritmos
+            </a>
+
+            <div class="box-tools">
+              <form action="/admin/ritmos">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="search" class="form-control pull-right" placeholder="Search" value="{$search}">
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </div>
+
+          <div class="box-body no-padding">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Ritmo</th>
+                    <th>Descrição</th>
+                    <th>URL</th>
+                    <th style="width: 140px">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {loop="$ritmos"}
+                  <tr>
+                    <td>{$value.idritmo}</td>
+                    <td>{$value.tituloritmo}</td>
+                    <td>{$value.descritmo}</td>
+                    <td>{$value.desurlritmo}</td>
+                    <td>
+                      <a href="/admin/ritmos/{$value.idritmo}" class="btn btn-primary btn-xs">
+                        <i class="fa fa-edit"></i> Alterar
+                      </a>
+                      <a href="/admin/ritmos/{$value.idritmo}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs">
+                        <i class="fa fa-trash"></i> Excluir
+                      </a>
+                    </td>
+                  </tr>
+                  {/loop}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+              {loop="$pages"}
+              <li><a href="{$value.href}">{$value.text}</a></li>
+              {/loop}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

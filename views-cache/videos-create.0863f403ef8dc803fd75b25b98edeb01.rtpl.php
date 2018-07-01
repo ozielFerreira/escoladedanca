@@ -1,0 +1,61 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Lista de Videos
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="/admin/videos">Videos</a></li>
+      <li class="active"><a href="/admin/videos/create">Cadastrar</a></li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+     <div class="col-md-12">
+      <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">Novo Videos</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" action="/admin/videos/create" method="post">
+          <div class="box-body">
+
+            <div class="form-group">
+              <label for="urlvideo">URL Video</label>
+              <input type="url" class="form-control" id="urlvideo" name="urlvideo" placeholder="Exemplo: https://www.youtube.com/embed/IONhts0TdR4" required pattern=".*\.youtube\..*" title="A URL deve ser de dominio do youtube">
+                  <span class="validity"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="titulovideo">Titulo</label>
+              <input type="text" class="form-control" id="titulovideo" name="titulovideo" placeholder="Digite o titulo" maxlength="33">
+            </div>
+
+            <div class="form-group">
+              <label for="descvideo">Descrição</label>
+              <input type="text" class="form-control" id="descvideo" name="descvideo" placeholder="Descrição" maxlength="43">
+            </div>
+
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button type="submit" class="btn btn-success">Cadastrar</button>
+
+              <a href="/admin/videos" class="btn btn-primary">
+                <i class="fa fa-undo"></i> Voltar
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
